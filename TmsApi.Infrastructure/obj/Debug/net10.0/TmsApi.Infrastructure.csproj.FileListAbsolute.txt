@@ -1,0 +1,6 @@
+c:\Users\CSUG\Desktop\final\tms-api\TmsApi\TmsApi.Infrastructure\obj\Debug\net10.0\TmsApi.Infrastructure.csproj.AssemblyReference.cache
+c:\Users\CSUG\Desktop\final\tms-api\TmsApi\TmsApi.Infrastructure\obj\Debug\net10.0\TmsApi.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+c:\Users\CSUG\Desktop\final\tms-api\TmsApi\TmsApi.Infrastructure\obj\Debug\net10.0\TmsApi.Infrastructure.AssemblyInfoInputs.cache
+c:\Users\CSUG\Desktop\final\tms-api\TmsApi\TmsApi.Infrastructure\obj\Debug\net10.0\TmsApi.Infrastructure.AssemblyInfo.cs
+c:\Users\CSUG\Desktop\final\tms-api\TmsApi\TmsApi.Infrastructure\obj\Debug\net10.0\TmsApi.Infrastructure.csproj.CoreCompileInputs.cache
+c:\Users\CSUG\Desktop\final\tms-api\TmsApi\TmsApi.Infrastructure\obj\Debug\net10.0\TmsApi.Infrastructure.sourcelink.json
