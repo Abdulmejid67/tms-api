@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "//0lKtCwUZo=",
+  "dgSpecHash": "pfhbFmS3/lw=",
   "success": true,
-  "projectFilePath": "c:\\Users\\CSUG\\Desktop\\final\\tms-api\\TmsApi\\TmsApi.Api\\TmsApi.Api.csproj",
+  "projectFilePath": "C:\\Users\\CSUG\\tms-api\\TmsApi.Api\\TmsApi.Api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\CSUG\\.nuget\\packages\\asp.versioning.abstractions\\10.2.1\\asp.versioning.abstractions.10.2.1.nupkg.sha512",
     "C:\\Users\\CSUG\\.nuget\\packages\\asp.versioning.http\\10.2.1\\asp.versioning.http.10.2.1.nupkg.sha512",
@@ -54,9 +54,9 @@
       "code": "NU1510",
       "level": "Warning",
       "message": "PackageReference Microsoft.AspNetCore.SignalR will not be pruned. Consider removing this package from your dependencies, as it is likely unnecessary.",
-      "projectPath": "c:\\Users\\CSUG\\Desktop\\final\\tms-api\\TmsApi\\TmsApi.Api\\TmsApi.Api.csproj",
+      "projectPath": "C:\\Users\\CSUG\\tms-api\\TmsApi.Api\\TmsApi.Api.csproj",
       "warningLevel": 1,
-      "filePath": "c:\\Users\\CSUG\\Desktop\\final\\tms-api\\TmsApi\\TmsApi.Api\\TmsApi.Api.csproj",
+      "filePath": "C:\\Users\\CSUG\\tms-api\\TmsApi.Api\\TmsApi.Api.csproj",
       "libraryId": "Microsoft.AspNetCore.SignalR",
       "targetGraphs": [
         "net10.0"
@@ -66,9 +66,9 @@
       "code": "NU1603",
       "level": "Warning",
       "message": "TmsApi.Api depends on Scalar.AspNetCore (>= 1.2.0) but Scalar.AspNetCore 1.2.0 was not found. Scalar.AspNetCore 1.2.3 was resolved instead.",
-      "projectPath": "c:\\Users\\CSUG\\Desktop\\final\\tms-api\\TmsApi\\TmsApi.Api\\TmsApi.Api.csproj",
+      "projectPath": "C:\\Users\\CSUG\\tms-api\\TmsApi.Api\\TmsApi.Api.csproj",
       "warningLevel": 1,
-      "filePath": "c:\\Users\\CSUG\\Desktop\\final\\tms-api\\TmsApi\\TmsApi.Api\\TmsApi.Api.csproj",
+      "filePath": "C:\\Users\\CSUG\\tms-api\\TmsApi.Api\\TmsApi.Api.csproj",
       "libraryId": "Scalar.AspNetCore",
       "targetGraphs": [
         "net10.0"
@@ -78,9 +78,9 @@
       "code": "NU1903",
       "level": "Warning",
       "message": "Package 'Microsoft.OpenApi' 2.0.0 has a known high severity vulnerability, https://github.com/advisories/GHSA-v5pm-xwqc-g5wc",
-      "projectPath": "c:\\Users\\CSUG\\Desktop\\final\\tms-api\\TmsApi\\TmsApi.Api\\TmsApi.Api.csproj",
+      "projectPath": "C:\\Users\\CSUG\\tms-api\\TmsApi.Api\\TmsApi.Api.csproj",
       "warningLevel": 1,
-      "filePath": "c:\\Users\\CSUG\\Desktop\\final\\tms-api\\TmsApi\\TmsApi.Api\\TmsApi.Api.csproj",
+      "filePath": "C:\\Users\\CSUG\\tms-api\\TmsApi.Api\\TmsApi.Api.csproj",
       "libraryId": "Microsoft.OpenApi",
       "targetGraphs": [
         "net10.0"

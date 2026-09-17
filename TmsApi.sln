@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.320.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TmsApi.Api", "c:\Users\CSUG\Desktop\final\tms-api\TmsApi\TmsApi.Api\TmsApi.Api.csproj", "{13500976-A5E5-5C3C-D60B-85C8D6661FC1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TmsApi.Api", "c:\Users\CSUG\tms-api\TmsApi.Api\TmsApi.Api.csproj", "{13500976-A5E5-5C3C-D60B-85C8D6661FC1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TmsApi.Application", "c:\Users\CSUG\Desktop\final\tms-api\TmsApi\TmsApi.Application\TmsApi.Application.csproj", "{61E08A74-DC05-B099-10A5-471B66BE8720}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TmsApi.Application", "c:\Users\CSUG\tms-api\TmsApi.Application\TmsApi.Application.csproj", "{61E08A74-DC05-B099-10A5-471B66BE8720}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TmsApi.Domain", "c:\Users\CSUG\Desktop\final\tms-api\TmsApi\TmsApi.Domain\TmsApi.Domain.csproj", "{D8DE88E5-8AEA-0BE9-A140-935A07B6B5E1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TmsApi.Domain", "c:\Users\CSUG\tms-api\TmsApi.Domain\TmsApi.Domain.csproj", "{D8DE88E5-8AEA-0BE9-A140-935A07B6B5E1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TmsApi.Infrastructure", "c:\Users\CSUG\Desktop\final\tms-api\TmsApi\TmsApi.Infrastructure\TmsApi.Infrastructure.csproj", "{D05546AD-D87C-004A-CF6F-EFF1821C7316}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TmsApi.Infrastructure", "c:\Users\CSUG\tms-api\TmsApi.Infrastructure\TmsApi.Infrastructure.csproj", "{D05546AD-D87C-004A-CF6F-EFF1821C7316}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

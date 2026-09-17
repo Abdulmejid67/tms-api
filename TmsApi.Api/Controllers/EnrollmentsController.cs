@@ -1,66 +1,60 @@
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using TmsApi.Dtos;
-using TmsApi.Services;
+using TmsApi.Application.Dtos;
+using TmsApi.Application.Interfaces;
 
-namespace TmsApi.Controllers;
+namespace TmsApi.Api.Controllers;
 
 [ApiController]
 [Route("api/courses/{courseId:int}/enrollments")]
 [Tags("Enrollments")]
 [Produces("application/json")]
-[ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
 public class EnrollmentsController(
     ICourseService courseService,
     IEnrollmentService enrollmentService) : ControllerBase
 {
-    // GET /api/courses/{courseId}/enrollments - List all enrollments for a course
+    // GET /api/courses/{courseId}/enrollments
     [HttpGet(Name = "ListCourseEnrollments")]
-    [ProducesResponseType(typeof(IReadOnlyList<EnrollmentResponseDto>), StatusCodes.Status200OK)]
-    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
-    [EndpointSummary("List enrollments for a course")]
     public async Task<IActionResult> GetEnrollments(int courseId, CancellationToken ct)
     {
-        // Verify course exists
         var course = await courseService.GetByIdAsync(courseId, ct);
-        if (course is null)
-            return NotFound();
+        if (course is null) return NotFound();
 
         var enrollments = await enrollmentService.GetByCourseAsync(courseId, ct);
-        return Ok(enrollments);
+
+        var result = enrollments.Select(e => new EnrollmentResponseDto(
+            e.Id, e.CourseId, e.StudentId, e.EnrolledAt));
+
+        return Ok(result);
     }
 
-    // GET /api/courses/{courseId}/enrollments/{id} - Get single enrollment
+    // GET /api/courses/{courseId}/enrollments/{id}
     [HttpGet("{id:int}", Name = nameof(GetEnrollment))]
-    [ProducesResponseType(typeof(EnrollmentResponseDto), StatusCodes.Status200OK)]
-    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
-    [EndpointSummary("Get one enrollment for a course")]
     public async Task<IActionResult> GetEnrollment(int courseId, int id, CancellationToken ct)
     {
+        // Uses the 3-arg overload
         var enrollment = await enrollmentService.GetByIdAsync(courseId, id, ct);
-        return enrollment is not null ? Ok(enrollment) : NotFound();
+        if (enrollment is null) return NotFound();
+
+        var dto = new EnrollmentResponseDto(
+            enrollment.Id, enrollment.CourseId, enrollment.StudentId, enrollment.EnrolledAt);
+
+        return Ok(dto);
     }
 
-    // POST /api/courses/{courseId}/enrollments - Enroll a student
+    // POST /api/courses/{courseId}/enrollments
     [HttpPost]
-    [ProducesResponseType(typeof(EnrollmentResponseDto), StatusCodes.Status201Created)]
-    [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
-    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
-    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status409Conflict)]
-    [EndpointSummary("Enrol a student in a course")]
-    [EndpointDescription("Returns 404 if the course does not exist, 409 if the course has reached MaxCapacity.")]
     public async Task<IActionResult> EnrollStudent(
         int courseId,
         EnrollStudentRequest request,
         CancellationToken ct)
     {
-        // TODO 3: Verify course exists first (404 before 409)
+        // 1. Parent course exists?
         var course = await courseService.GetByIdAsync(courseId, ct);
-        if (course is null)
-            return NotFound();
+        if (course is null) return NotFound();
 
-        // Check capacity
-        if (course.EnrollmentCount >= course.MaxCapacity)
+        // 2. Capacity check — use Enrollments.Count, not a nonexistent property
+        var currentCount = course.Enrollments?.Count ?? 0;
+        if (currentCount >= course.MaxCapacity)
         {
             return Conflict(new ProblemDetails
             {
@@ -70,7 +64,12 @@ public class EnrollmentsController(
             });
         }
 
-        var result = await enrollmentService.CreateAsync(courseId, request, ct);
-        return CreatedAtAction(nameof(GetEnrollment), new { courseId, id = result.Id }, result);
+        // 3. Create the enrollment
+        var created = await enrollmentService.CreateAsync(courseId, request.StudentId, ct);
+
+        var dto = new EnrollmentResponseDto(
+            created.Id, created.CourseId, created.StudentId, created.EnrolledAt);
+
+        return CreatedAtAction(nameof(GetEnrollment), new { courseId, id = dto.Id }, dto);
     }
 }
