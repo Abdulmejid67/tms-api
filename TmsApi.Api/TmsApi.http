@@ -94,8 +94,32 @@ curl -X POST http://localhost:5180/api/courses/{id}/enrollments \
   -H "Content-Type: application/json" \
   -d '{"studentId":1}'
 ###
-curl http://localhost:5000/api/courses/{id}
+curl http://localhost:5180/api/courses/1
 ###
-curl http://localhost:5000/api/courses/1/enrollments
+curl http://localhost:5180/api/courses/1/enrollments
 ###
-curl -i http://localhost:5000/api/v1/courses
+curl http://localhost:5180/api/courses
+###
+curl http://localhost:5180/api/v2/courses
+###
+curl.exe http://localhost:5180/api/v1/courses | jq 'keys'
+###
+curl -X POST http://localhost:5180/api/v2/enrollments \
+  -H "Content-Type: application/json" \
+  -d '{"studentId":1,"courseCode":"CSE-101"}'
+###
+curl -X POST http://localhost:5180/api/v2/enrollments \
+  -H "Content-Type: application/json" \
+  -d '{"studentId":1,"courseCode":"invalid"}'
+###
+curl -i -X POST http://localhost:5180/api/v2/enrollments \
+  -H "Content-Type: application/json" \
+  -d '{"studentId":1,"courseCode":"ZZZ-999"}'
+###
+curl -i -X POST http://localhost:5180/api/v2/enrollments \
+  -H "Content-Type: application/json" \
+  -d '{"studentId":1,"courseCode":"CSE-101"}'
+###
+curl http://localhost:5180/api/v2/enrollments/1/schedule
+###
+curl http://localhost:5180/api/v2/courses

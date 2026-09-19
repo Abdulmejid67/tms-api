@@ -34,6 +34,16 @@ public class EnrollmentService : IEnrollmentService
             .ToListAsync(ct);
     }
 
+    public async Task<IReadOnlyList<Enrollment>> GetByCourseIdAsync(int courseId, CancellationToken ct)
+    {
+        return await _context.Enrollments
+            .AsNoTracking()
+            .Include(e => e.Student)
+            .Include(e => e.Course)
+            .Where(e => e.CourseId == courseId)
+            .ToListAsync(ct);
+    }
+
     public async Task<bool> ExistsAsync(int studentId, string courseCode, CancellationToken ct)
     {
         return await _context.Enrollments
@@ -84,4 +94,6 @@ public class EnrollmentService : IEnrollmentService
 
         return enrollment;
     }
+
+    
 }

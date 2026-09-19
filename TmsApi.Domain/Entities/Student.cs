@@ -9,6 +9,6 @@ public class Student
     public bool IsActive { get; set; } = true;
     public bool IsDeleted { get; set; } = false;
     public byte[]? Version { get; set; }
-
+    
     public ICollection<Enrollment> Enrollments { get; set; } = [];
 }

@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using TmsApi.Configurations;
 using TmsApi.Domain.Entities;
 
 namespace TmsApi.Infrastructure.Persistence;
@@ -14,12 +13,6 @@ public class TmsDbContext(DbContextOptions<TmsDbContext> options) : DbContext(op
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        // Apply all configurations from the assembly
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(TmsDbContext).Assembly);
-
-        // Shadow property for audit (Session 3)
-        modelBuilder.Entity<Student>()
-            .Property<DateTime>("LastUpdated")
-            .HasDefaultValueSql("CURRENT_TIMESTAMP");
     }
 }

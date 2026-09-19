@@ -2869,8 +2869,8 @@
             "c:\\Users\\CSUG\\tms-api\\TmsApi.Domain\\TmsApi.Domain.csproj": {
               "projectPath": "c:\\Users\\CSUG\\tms-api\\TmsApi.Domain\\TmsApi.Domain.csproj"
             },
-            "c:\\Users\\CSUG\\tms-api\\TmsApi.Infrastructure\\TmsApi.Infrastructure.csproj": {
-              "projectPath": "c:\\Users\\CSUG\\tms-api\\TmsApi.Infrastructure\\TmsApi.Infrastructure.csproj"
+            "C:\\Users\\CSUG\\tms-api\\TmsApi.Infrastructure\\TmsApi.Infrastructure.csproj": {
+              "projectPath": "C:\\Users\\CSUG\\tms-api\\TmsApi.Infrastructure\\TmsApi.Infrastructure.csproj"
             }
           }
         }
@@ -2948,7 +2948,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.300/PortableRuntimeIdentifierGraph.json",
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.301/PortableRuntimeIdentifierGraph.json",
         "packagesToPrune": {
           "Microsoft.AspNetCore": "(,10.0.32767]",
           "Microsoft.AspNetCore.Antiforgery": "(,10.0.32767]",

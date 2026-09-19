@@ -19,7 +19,8 @@ public class EnrollStudentHandler(
             return Result<EnrollmentCreated, EnrollmentError>.Failure(
                 EnrollmentError.CourseNotFound(command.CourseCode));
 
-        if (course.Enrollments.Count >= course.MaxCapacity)
+        var currentCount = course.Enrollments?.Count ?? 0;
+        if (currentCount >= course.MaxCapacity)
             return Result<EnrollmentCreated, EnrollmentError>.Failure(
                 EnrollmentError.CourseFull(course.Title, course.MaxCapacity));
 

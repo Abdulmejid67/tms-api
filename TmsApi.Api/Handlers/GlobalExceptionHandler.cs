@@ -1,6 +1,5 @@
 using FluentValidation;
 using Microsoft.AspNetCore.Diagnostics;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -30,8 +29,7 @@ public class GlobalExceptionHandler(ILogger<GlobalExceptionHandler> logger) : IE
                 .GroupBy(e => e.PropertyName)
                 .ToDictionary(
                     g => g.Key,
-                    g => g.Select(e => e.ErrorMessage).ToArray()
-                );
+                    g => g.Select(e => e.ErrorMessage).ToArray());
         }
 
         httpContext.Response.StatusCode = problemDetails.Status.Value;

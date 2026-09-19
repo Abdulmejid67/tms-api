@@ -1,22 +1,15 @@
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TmsApi.Application.Dtos;
 using TmsApi.Application.Interfaces;
-using TmsApi.Domain.Entities;
 
 namespace TmsApi.Api.Controllers;
 
 [ApiController]
 [Route("api/courses")]
-[Tags("Courses")]
-[Produces("application/json")]
-[ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-public class CoursesController(
-    ICourseService courseService,
-    LinkGenerator linkGenerator) : ControllerBase
+[Tags("Courses (Legacy)")]
+public class CoursesController(ICourseService courseService) : ControllerBase
 {
     [HttpGet]
-    [ProducesResponseType(typeof(PagedResponse<CourseResponseDto>), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetCourses(
         [FromQuery] PagedRequest request,
         CancellationToken ct)
@@ -25,39 +18,22 @@ public class CoursesController(
         return Ok(result);
     }
 
-    [HttpGet("{id:int}", Name = nameof(GetCourseById))]
-    public async Task<IActionResult> GetCourseById(int id, CancellationToken ct)
+    [HttpGet("{id:int}")]
+    public async Task<IActionResult> GetById(int id, CancellationToken ct)
     {
         var course = await courseService.GetByIdAsync(id, ct);
         if (course is null) return NotFound();
 
-        // Course entity does NOT have EnrollmentCount — use Enrollments.Count
-        var enrollmentCount = course.Enrollments?.Count ?? 0;
-
         var dto = new CourseResponseDto(
             course.Id, course.Code, course.Title,
-            course.MaxCapacity, enrollmentCount);
+            course.MaxCapacity, course.Enrollments?.Count ?? 0);
 
-        var links = new List<LinkDto>
-        {
-            new(linkGenerator.GetPathByName(HttpContext, nameof(GetCourseById), new { id })!, "self", "GET"),
-            new($"/api/courses/{id}/enrollments", "enrollments", "GET")
-        };
-
-        if (enrollmentCount < course.MaxCapacity)
-        {
-            links.Add(new LinkDto($"/api/courses/{id}/enrollments", "enroll", "POST"));
-        }
-
-        var detail = new CourseDetailDto(
-            dto.Id, dto.Code, dto.Title, dto.MaxCapacity, dto.EnrollmentCount, links);
-
-        return Ok(detail);
+        return Ok(dto);
     }
 
     [HttpPost]
-    public async Task<IActionResult> CreateCourse(
-        CreateCourseRequest request,
+    public async Task<IActionResult> Create(
+        [FromBody] CreateCourseRequest request,
         CancellationToken ct)
     {
         if (await courseService.CodeExistsAsync(request.Code, ct))
@@ -70,8 +46,7 @@ public class CoursesController(
             });
         }
 
-        // Build the Course entity from the DTO
-        var course = new Course
+        var course = new TmsApi.Domain.Entities.Course
         {
             Code = request.Code,
             Title = request.Title,
@@ -79,10 +54,9 @@ public class CoursesController(
         };
 
         var created = await courseService.CreateAsync(course, ct);
-
         var dto = new CourseResponseDto(
             created.Id, created.Code, created.Title, created.MaxCapacity, 0);
 
-        return CreatedAtAction(nameof(GetCourseById), new { id = dto.Id }, dto);
+        return CreatedAtAction(nameof(GetById), new { id = dto.Id }, dto);
     }
 }

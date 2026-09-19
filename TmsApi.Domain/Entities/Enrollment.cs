@@ -1,5 +1,3 @@
-
-
 namespace TmsApi.Domain.Entities;
 
 public class Enrollment
@@ -10,7 +8,7 @@ public class Enrollment
     public decimal? Grade { get; set; }
     public DateTime EnrolledAt { get; set; } = DateTime.UtcNow;
     public bool IsArchived { get; set; } = false;
-
+    
     public Student Student { get; set; } = null!;
     public Course Course { get; set; } = null!;
 }

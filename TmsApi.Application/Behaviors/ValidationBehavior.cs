@@ -19,7 +19,7 @@ public class ValidationBehavior<TRequest, TResponse>(
         var context = new ValidationContext<TRequest>(request);
         var failures = validators
             .Select(v => v.Validate(context))
-            .SelectMany(result => result.Errors)
+            .SelectMany(r => r.Errors)
             .Where(f => f is not null)
             .ToList();
 
